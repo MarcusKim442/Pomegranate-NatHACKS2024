@@ -1,0 +1,22 @@
+.phone-constraint {
+    background-color: rgb(32, 33, 34);
+    height: 100%;
+}
+
+.container {
+    background-color: white;
+    width: 400px;
+    height: 100%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: gray;
+}
+
+body {
+    top: 0px;
+    height: 100%;
+}
+
+html {
+    height: 100%
+}
