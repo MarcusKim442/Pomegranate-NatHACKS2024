@@ -11,6 +11,7 @@ def main():
 
     # use synthetic board for demo
     params = BrainFlowInputParams()
+    params.serial_port = "COM3"  
     board = BoardShim(BoardIds.GANGLION_BOARD.value, params)
     board.prepare_session()
     board.start_stream()
