@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+
 
 """
 ## Version history:
@@ -108,7 +108,8 @@ if __name__ == '__main__':
 	# 	print ('arg1: input dir\narg2: output file')
 	# 	sys.exit(-1)
 	# directory_path = sys.argv[1]
-	file_path = os.getcwd()
+	file_path = os.path.abspath("processed_data.csv")
 	# output_file = sys.argv[2]
 	output_file = "output.csv"
 	gen_training_matrix(file_path, output_file, cols_to_ignore = -1)
+	
