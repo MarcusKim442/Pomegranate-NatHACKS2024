@@ -1,3 +1,21 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+## Version history:
+
+2018:
+	Original script by Dr. Luis Manso [lmanso], Aston University
+	
+2019, June:
+	Revised, commented and updated by Dr. Felipe Campelo [fcampelo], Aston University
+	(f.campelo@aston.ac.uk / fcampelo@gmail.com)
+"""
+
+# Commented since not used. [fcampelo]
+# import sys
+#from scipy.spatial.distance import euclidean
+
 import numpy as np
 import scipy
 import scipy.signal
@@ -885,3 +903,42 @@ def generate_feature_vectors_from_samples(file_path, nsamples, period,
 	# Return
 	return ret, feat_names
 
+
+
+# ========================================================================
+"""
+Other notes by [fcampelo]:
+1) ENTROPY
+Entropy does not make sense for the "continuous" distribution of 
+signal values. The closest analogue, Shannon's differential entropy, 
+has been shown to be incorrect from a mathematical perspective
+(see, https://www.crmarsh.com/static/pdf/Charles_Marsh_Continuous_Entropy.pdf
+and https://en.wikipedia.org/wiki/Limiting_density_of_discrete_points )
+I could not find an easy way to implement the LDDP here, nor any ready-to-use 
+function, so I'm leaving entropy out of the features for now.
+A possible alternative would be to calculate the entropy of a histogram of each 
+signal. Also something to discuss.
+
+2) CORRELATION
+The way the correlations were calculated in the previous script didn't make 
+much sense. What was being done was calculating the correlations of 75 pairs of 
+vectors, each composed of a single observation of the 5 signals. I cannot think 
+of any reason why this would be interesting, or carry any useful information
+(simply because the first sample of h1 should be no more related to the first 
+sample of h2 than it would be to the one immediately after - or before - it).
+A (possibly) more useful information would be the correlations of each of the 
+5 signals against each other (maybe they can be correlated under some mental 
+states and decorrelated for others)? This is already done by the covariance 
+matrix.
+
+3) AUTOCORRELATION
+A possibility would be to use the autocorrelation and cross-correlation of 
+the signals. Both can be easily calculated, but would result in a massive 
+amount of features (e.g., full autocorrelation would yield 2N-1 features per 
+signal.). Not sure if we want that, but it's something to consider.
+
+4) TSFRESH
+Package tsfresh seemingly has a load of features implemented for time series,
+it may be worth exploring.
+"""
+#
