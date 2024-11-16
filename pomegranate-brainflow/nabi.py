@@ -27,10 +27,10 @@ def main():
     # Get channel indices for Ganglion
     timestamp_column = BoardShim.get_timestamp_channel(BoardIds.GANGLION_BOARD.value)
     eeg_channels = BoardShim.get_eeg_channels(BoardIds.GANGLION_BOARD.value)
-    noise_column = BoardShim.get_marker_channel(BoardIds.GANGLION_BOARD.value)  # Use marker channel for noise
+    noise_column = 0
 
-    # Extract relevant columns: timestamp, 4 EEG channels, and noise
-    selected_columns = [timestamp_column] + eeg_channels[:4] + [noise_column]
+    # Ensure the order: timestamps, EEG channels, AUX noise
+    selected_columns = [timestamp_column] + eeg_channels + [noise_column]
     df = df.iloc[:, selected_columns]
 
     # Rename columns for clarity
