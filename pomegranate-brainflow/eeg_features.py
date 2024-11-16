@@ -884,3 +884,4 @@ def generate_feature_vectors_from_samples(file_path, nsamples, period,
 
 	# Return
 	return ret, feat_names
+
