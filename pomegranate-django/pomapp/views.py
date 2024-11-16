@@ -1,3 +1,4 @@
+from contextlib import nullcontext
 from django.shortcuts import render
 from django.http import HttpResponse
 from pomapp.models import Post, PostImage
@@ -8,19 +9,28 @@ def home(request):
 
 def view_post(request, id):
     post = Post.objects.get(id=id)
+
     next_id = post.id + 1
     prev_id = post.id - 1
-    next_post = Post.objects.get(id=next_id)
-    previous_post = Post.objects.get(id=prev_id)
 
-    imageObjects = PostImage.objects.filter(post_id = post)
-    images = []
-    for imageO in imageObjects:
-        images.append(imageO.image)
+    try:
+        next_post = Post.objects.get(id=next_id)
+        next_post_id = next_post.id
+    except:
+        next_post_id = -1
 
+    try:
+        previous_post = Post.objects.get(id=prev_id)
+        previous_post_id = previous_post.id
+    except:
+        previous_post_id = -1
+
+
+    imageObject = PostImage.objects.get(post_id = post.id)
+    imageString = imageObject.image 
     return render(request, 'post.html', {
         "post": post,
-        "image_list": images,
-        "next_post": next_post,
-        "previous_post": previous_post
+        "image": imageString,
+        "next_post_id": next_post_id,
+        "previous_post_id": previous_post_id,
     })
