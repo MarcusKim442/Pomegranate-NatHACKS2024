@@ -17,8 +17,10 @@
 #from scipy.spatial.distance import euclidean
 
 import numpy as np
+import os
 import scipy
 import scipy.signal
+file_path = 'processed_data.csv'
 
 def matrix_from_csv_file(file_path):
 	"""
@@ -535,44 +537,6 @@ def feature_eigenvalues(covM):
 
 
 def feature_logcov(covM):
-	"""
-	Computes the matrix logarithm of the covariance matrix of the signals. 
-	Since the matrix is symmetric, only the lower triangular elements 
-	(including the main diagonal) are returned. 
-	
-	In the unlikely case that the matrix logarithm contains complex values the 
-	vector of features returned will contain the magnitude of each component 
-	(the covariance matrix returned will be in its original form). Complex 
-	values should not happen, as the covariance matrix is always symmetric 
-	and positive semi-definite, but the guarantee of real-valued features is in 
-	place anyway. 
-	
-	Details:
-		The matrix logarithm is defined as the inverse of the matrix 
-		exponential. For a matrix B, the matrix exponential is
-		
-			$ exp(B) = \sum_{r=0}^{\inf} B^r / r! $,
-		
-		with 
-		
-			$ B^r = \prod_{i=1}^{r} B / r $.
-			
-		If covM = exp(B), then B is a matrix logarithm of covM.
-	
-	Parameters:
-		covM (numpy.ndarray): 2D [nsignals x nsignals] covariance matrix of the 
-		signals in a time window
-		
-	Returns:
-		numpy.ndarray: 1D array containing the elements of the upper triangular 
-		(incl. main diagonal) of the matrix logarithm of the covariance matrix.
-		list: list containing feature names for the quantities calculated.
-		numpy.ndarray: 2D array containing the matrix logarithm of covM
-		
-
-	Author:
-		Original: [fcampelo]
-	"""
 	log_cov = scipy.linalg.logm(covM)
 	indx = np.triu_indices(log_cov.shape[0])
 	ret  = np.abs(log_cov[indx])
