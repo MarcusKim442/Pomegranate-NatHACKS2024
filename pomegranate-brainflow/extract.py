@@ -16,7 +16,7 @@ import os, sys
 import numpy as np
 from eeg_features import generate_feature_vectors_from_samples
 
-def gen_training_matrix(directory_path, output_file, cols_to_ignore):
+def gen_training_matrix(file_path, output_file, cols_to_ignore):
 	"""
 	Reads the csv files in directory_path and assembles the training matrix with 
 	the features extracted using the functions from EEG_feature_extraction.
@@ -64,7 +64,7 @@ def gen_training_matrix(directory_path, output_file, cols_to_ignore):
 			
 	# 	print ('Using file', x)
 	# 	full_file_path = directory_path  +   '/'   + x
-	vectors, header = generate_feature_vectors_from_samples(file_path = full_file_path, 
+	vectors, header = generate_feature_vectors_from_samples(file_path, 
 																	nsamples = 150, 
 																	period = 1.,
 																	# state = state,
@@ -104,11 +104,11 @@ if __name__ == '__main__':
 		Original by [lmanso]
 		Documentation: [fcampelo]
 """
-	if len(sys.argv) < 3:
-		print ('arg1: input dir\narg2: output file')
-		sys.exit(-1)
+	# if len(sys.argv) < 3:
+	# 	print ('arg1: input dir\narg2: output file')
+	# 	sys.exit(-1)
 	# directory_path = sys.argv[1]
-	directory_path = 
+	file_path = os.getcwd()
 	# output_file = sys.argv[2]
 	output_file = "output.csv"
-	gen_training_matrix(directory_path, output_file, cols_to_ignore = -1)
+	gen_training_matrix(file_path, output_file, cols_to_ignore = -1)
