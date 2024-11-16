@@ -1,4 +1,5 @@
 import time
+import os
 import numpy as np
 import pandas as pd
 from brainflow.board_shim import BoardShim, BrainFlowInputParams, LogLevels, BoardIds
@@ -43,8 +44,11 @@ def main():
     # Drop columns with all zero values
     df = df.loc[:, (df != 0).any(axis=0)]
 
+    # Get the directory of the script and save the file there
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    output_file = os.path.join(script_dir, 'processed_data.csv')
+
     # Save processed data to CSV
-    output_file = 'processed_data.csv'
     df.to_csv(output_file, index=False)
     print(f"Processed data saved to {output_file}")
 
