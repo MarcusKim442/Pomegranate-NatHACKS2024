@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Post
+
+{% endblock %}
+
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'pomapp/post.css' %}">
+
+    <div class="post-header">
+        <img class="profile-photo" src={{post.profile_photo}}>
+        <h1 class="username">@{{post.user}}</h1>
+    </div>
+
+    <div class="post-title">
+        <p class="title">{{post.title}}</p>
+    </div>
+
+    <div id="post-div"> 
+        <img class="post-image" src={{image}}>
+    </div>
+
+    </script>
+
+    <div class="caption">
+        <p class="content">{{post.caption}}</p>
+    </div>
+    <div class="interactions">
+        <button class="like">♡ Pom</button> 
+        <button class="comment">Pomment</button> 
+        <button class="share">Share</button> 
+    </div>
+
+    <div class="nav">
+        {% if previous_post_id != -1 %}
+            <a href="{% url 'view_post' id=previous_post_id %}">
+                <button class="previous">← Previous</button> 
+            </a>
+        {% endif %}
+    
+        {% if next_post_id != -1 %}
+            <a href="{% url 'view_post' id=next_post_id %}">
+                <button class="next">Next →</button>
+            </a>
+        {% endif %}
+    </div>
+
+{% endblock %}
