@@ -43,3 +43,8 @@ Classification Report:
     accuracy                           0.91       323
    macro avg       0.91      0.90      0.91       323
 weighted avg       0.91      0.91      0.91       323
+
+(Note: 
+0 = NEGATIVE
+1 = NEUTRAL
+2 = POSITIVE)
