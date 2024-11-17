@@ -1,7 +1,7 @@
     // Function to fetch the latest data from the server
     async function fetchLatestData() {
         try {
-            const response = await fetch('/poll_updates');
+            const response = await fetch('localhost:8000/poll_updates');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
