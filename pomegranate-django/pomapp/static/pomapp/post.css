@@ -234,3 +234,20 @@ Button:disabled {
 .post-negative-animation {
     animation: slideDown 2.5s ease-out forwards;
 }
+
+@keyframes slideDownPomegranalyzing {
+    0% {
+        translate: 0px -80px;
+    }
+    100% {
+        translate: 0px 0px;
+    }
+}
+
+.alert-primary {
+    animation: slideDownPomegranalyzing 0.8s;
+}
+
+.display-none {
+    display: none !important
+}

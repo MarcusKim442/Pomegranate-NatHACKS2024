@@ -56,6 +56,15 @@ function negativePostSlide() {
   }
 }
 
+function removePomegranalyzing() {
+  const div = document.querySelector("#pomegranalyzing");
+  if (div) {
+    div.classList.add("display-none");
+  } else {
+    console.error("div not found");
+  }
+}
+
 // Fetch data based on page trigger, rather than on a timer
 async function sendDataTrigger() {
   var response = await fetch("/begin-collection");
@@ -69,6 +78,7 @@ async function sendDataTrigger() {
     // Positive
     showReaction(true);
   }
+  removePomegranalyzing();
 }
 
 sendDataTrigger();

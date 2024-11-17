@@ -10,6 +10,11 @@
     <script src="{% static 'pomapp/post.js' %}"></script>
     <link rel="stylesheet" href="{% static 'pomapp/post.css' %}">
 
+    <div id="pomegranalyzing" class="alert alert-primary" role="alert" style="top: 10px; align-items: center; display: flex; z-index: 100; position: absolute; width: 370px">
+        <div class="spinner-grow" style="width: 30px; height: 30px; margin-right: 10px;" role="status"></div>
+        Pomegranalyzing...
+    </div>
+
     <div class="post-container">
         <div class="post-header">
             <img class="profile-photo" src={{post.profile_photo}}>
