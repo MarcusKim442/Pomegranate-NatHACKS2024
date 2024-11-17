@@ -1,12 +1,12 @@
 # Pomegranate-NatHACKS2024
 
 ## Authors:
-**- Aaron Chiu**
-**- Chidinma Amogu**
-**- Dave K**
-**- Grace Shin**
-**- Karina Zhang**
-**- Marcus Kim**
+- **Aaron Chiu**
+- **Chidinma Amogu**
+- **Dave K**
+- **Grace Shin**
+- **Karina Zhang**
+- **Marcus Kim**
 
   
 ## Installation and running
