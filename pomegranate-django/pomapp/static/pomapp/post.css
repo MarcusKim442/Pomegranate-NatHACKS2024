@@ -101,8 +101,8 @@
     justify-content: space-between;
     padding-bottom: 5px;
     width: 26%
-
 }
+
 .previous{
     align-self: flex-start;
 }
@@ -181,8 +181,9 @@ Button:disabled {
         transform: scale(1);
         opacity: 1;
     }
-    50% {
+    30% {
         transform: scale(3); /* Increased scale */
+        opacity: 1;
     }
     100% {
         transform: scale(3); /* Keep the scale consistent to the end */
@@ -193,8 +194,10 @@ Button:disabled {
 .icon-animation {
     position: absolute;
     z-index: 10;
-    animation: growAndFade 2s ease-out forwards;
+    animation: growAndFade 1.2s ease-out forwards;
     pointer-events: none; /* Ignore mouse events */
+    /* color: transparent;  
+    text-shadow: 0 0 0 rgb(31, 35, 48); */
 }
 
 .icon-container {
@@ -208,3 +211,26 @@ Button:disabled {
     font-style: normal; /* Ensures text is not italicized */
 }
 
+.like-pommed  {
+    background: #d31955;
+    color: white;
+}
+
+@keyframes slideDown {
+    0% {
+        translate: 0px 0px;
+        opacity: 0.8;
+    }
+    70% {
+        translate: 0px 0px;
+        opacity: 0.8;
+    }
+    100% {
+        translate: 0px 1000px;
+        opacity: 0;
+    }
+}
+
+.post-negative-animation {
+    animation: slideDown 2.5s ease-out forwards;
+}

@@ -5,6 +5,9 @@ import pandas as pd
 from brainflow.board_shim import BoardShim, BrainFlowInputParams, LogLevels, BoardIds
 from brainflow.data_filter import DataFilter
 
+def data_collection():
+    main()
+    return "worked"
 
 def main():
     BoardShim.enable_dev_board_logger()

@@ -7,6 +7,17 @@ import django.core.serializers as serializers
 from django.http import JsonResponse
 import os
 import pandas as pd
+import numpy as np
+from pomapp.read_eeg import collect_data
+from pomapp.extract import gen_training_matrix
+from django.conf import settings
+import keras
+import time
+
+model_path = os.path.join(os.path.dirname(__file__), 'eeg_files', 'custom_model.keras')
+eeg_raw_path = os.path.join(os.path.dirname(__file__), 'eeg_files', 'eeg_raw.csv')
+eeg_transformed_path = os.path.join(os.path.dirname(__file__), 'eeg_files', 'eeg_transformed.csv')
+
 def home(request):
     return render(request, 'home.html')
 
@@ -70,3 +81,30 @@ def poll_updates(request):
         return JsonResponse({'latest_data': latest_data})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+    
+def send_eeg_collection_trigger(request):
+    print('see post!')
+    time.sleep(2)
+    
+    # response = collect_data()
+
+    # gen_training_matrix(eeg_raw_path, eeg_transformed_path, cols_to_ignore=-1)
+    # predicted_labels = get_prediction()
+    # unique_values, counts = np.unique(predicted_labels, return_counts=True)
+    # most_common = int(unique_values[np.argmax(counts)])
+
+    most_common = 0
+    print("label: ", end='')
+    print(most_common)
+    return JsonResponse({'data': most_common})
+
+def get_prediction():
+    model = keras.saving.load_model(model_path)
+    data = pd.read_csv(eeg_transformed_path)
+    X_test = data.values 
+    X_test = X_test.reshape(data.shape[0], data.shape[1], 1) 
+    predictions = model.predict(X_test)
+    # For softmax (multiclass classification):
+    predicted_labels = predictions.argmax(axis=1)
+    print("Predicted labels:", predicted_labels)
+    return predicted_labels
