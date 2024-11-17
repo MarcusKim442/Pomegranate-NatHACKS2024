@@ -18,7 +18,7 @@ def main():
 
     # Update the recording time to match the required 1,240 seconds
     print("Streaming data for a few seconds...")
-    time.sleep(180)  # 20 minutes and 40 seconds
+    time.sleep(5)  # 20 minutes and 40 seconds
     data = board.get_board_data()
     board.stop_stream()
     board.release_session()
