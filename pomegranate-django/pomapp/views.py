@@ -15,18 +15,30 @@ def view_post(request, id):
 
     next_id = post.id + 1
     prev_id = post.id - 1
+    previous_post_id = -1
+    next_post_id = -1
+    max_posts = 10
 
-    try:
-        next_post = Post.objects.get(id=next_id)
-        next_post_id = next_post.id
-    except:
-        next_post_id = -1
+    for i in range(next_id, max_posts+1):
+        try:
+            next_post = Post.objects.get(id=i)
+            next_post_id = next_post.id
+        except:
+            next_post_id = -1
 
-    try:
-        previous_post = Post.objects.get(id=prev_id)
-        previous_post_id = previous_post.id
-    except:
-        previous_post_id = -1
+        if(next_post_id != -1):
+            break;
+
+    for i in range(1, prev_id+1):
+        try:
+            prev_post = Post.objects.get(id=prev_id)
+            previous_post_id = prev_post.id
+        except:
+            prev_id = prev_id-1
+            previous_post_id = -1
+
+        if(previous_post_id != -1):
+            break;
 
 
     imageObject = PostImage.objects.get(post_id = post.id)
