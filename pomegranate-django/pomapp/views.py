@@ -1,7 +1,7 @@
 from contextlib import nullcontext
 from django.shortcuts import render
 from django.http import HttpResponse
-from pomapp.models import Post, PostImage
+from pomapp.models import Post, PostImage, NegativePosts
 import json
 import django.core.serializers as serializers
 from django.http import JsonResponse
@@ -23,33 +23,36 @@ def home(request):
 
 def view_post(request, id):
     post = Post.objects.get(id=id)
-
-    next_id = post.id + 1
-    prev_id = post.id - 1
+    neg_posts_query = NegativePosts.objects.all()
+    neg_post_ids = []
+    for obj in neg_posts_query:
+        neg_post_ids.append(obj.post_id)
+    
     previous_post_id = -1
     next_post_id = -1
     max_posts = 10
 
-    for i in range(next_id, max_posts+1):
+    for i in range(post.id + 1, max_posts+1):
         try:
             next_post = Post.objects.get(id=i)
             next_post_id = next_post.id
         except:
             next_post_id = -1
 
-        if(next_post_id != -1):
+        if(next_post_id != -1 and next_post_id not in neg_post_ids):
             break;
 
-    for i in range(1, prev_id+1):
+    for j in range(post.id - 1, 0, -1):
         try:
-            prev_post = Post.objects.get(id=prev_id)
+            prev_post = Post.objects.get(id=j)
             previous_post_id = prev_post.id
         except:
-            prev_id = prev_id-1
             previous_post_id = -1
 
-        if(previous_post_id != -1):
+        if(previous_post_id != -1 and previous_post_id not in neg_post_ids):
+            print(previous_post_id)
             break;
+
 
 
     imageObject = PostImage.objects.get(post_id = post.id)

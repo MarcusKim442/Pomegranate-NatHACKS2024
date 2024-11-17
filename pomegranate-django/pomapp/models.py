@@ -14,3 +14,6 @@ class Post(models.Model):
 class PostImage(models.Model):
     post_id = models.OneToOneField(Post, on_delete=models.CASCADE, primary_key=True)
     image = models.CharField(max_length=1000, blank=False)
+
+class NegativePosts(models.Model):
+    post_id = models.IntegerField()
