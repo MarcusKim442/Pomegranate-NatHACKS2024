@@ -16,8 +16,9 @@ def main():
     board.prepare_session()
     board.start_stream()
 
-    print("Streaming data for 10 seconds...")
-    time.sleep(10)
+    # Update the recording time to match the required 1,240 seconds
+    print("Streaming data for a few seconds...")
+    time.sleep(180)  # 20 minutes and 40 seconds
     data = board.get_board_data()
     board.stop_stream()
     board.release_session()
@@ -44,11 +45,9 @@ def main():
     # Drop columns with all zero values
     df = df.loc[:, (df != 0).any(axis=0)]
 
-    # Get the directory of the script and save the file there
+    # Save processed data to CSV in the same directory as the script
     script_dir = os.path.dirname(os.path.abspath(__file__))
     output_file = os.path.join(script_dir, 'processed_data.csv')
-
-    # Save processed data to CSV
     df.to_csv(output_file, index=False)
     print(f"Processed data saved to {output_file}")
 
