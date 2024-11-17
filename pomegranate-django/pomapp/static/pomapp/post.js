@@ -15,7 +15,10 @@ function showReaction(isPositive) {
     setTimeout(() => {
       const div = document.querySelector(".post-id-holder");
       const next_post_id = div.getAttribute("next_post_id");
-      window.location.href = `/pomapp/post/${next_post_id}`;
+      // Demonstration mockup: only 6 posts exist
+      if (next_post_id < 6) {
+        window.location.href = `/pomapp/post/${next_post_id}`;
+      }
     }, 3000);
   }
 
