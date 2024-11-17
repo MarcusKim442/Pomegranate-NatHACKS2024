@@ -2,14 +2,14 @@ import keras
 import numpy as np
 import pandas as pd
 
-filepath = 'custom_model.keras'
+filepath = 'custom_model_retrain.keras'
 model = keras.saving.load_model(filepath)
 
 # TEST DATA
-data = pd.read_csv('test_data.csv')
+# data = pd.read_csv('test_data.csv')
 # CUSTOM DATA
-# data = pd.read_csv('custom_emotions.csv')
-# data = data.iloc[:10, :-1]
+data = pd.read_csv('custom_emotions.csv')
+data = data.iloc[:10, :-1]
 print(data)
 
 # ALL AT ONCE

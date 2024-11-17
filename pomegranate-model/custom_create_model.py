@@ -35,10 +35,11 @@ from tensorflow.keras.layers import MaxPool1D, MaxPooling2D
 import seaborn as sns
 from keras.layers import Flatten
 from keras.layers import Dense
+import tensorflow as tf
 
 # Read file
-data=pd.read_csv("custom_data/custom_emotions.csv")
-# data.head()
+data=pd.read_csv("custom_data/custom_emotions_artificial.csv")
+model_name = 'custom_model_artificial.keras'
 
 # Labeling
 le=LabelEncoder()
@@ -62,8 +63,6 @@ model = tf.keras.Model(inputs, outputs)
 model.summary()
 
 def train_model(model, x_train, y_train, x_test, y_test, save_to, epoch = 2):
-    model_name = 'custom_model.keras'
-
     opt_adam = keras.optimizers.Adam(learning_rate=0.001)
     es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=10)
     mc = ModelCheckpoint(save_to + model_name, monitor='val_accuracy', mode='max', verbose=1, save_best_only=True)

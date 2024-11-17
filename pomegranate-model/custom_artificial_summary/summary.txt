@@ -1,0 +1,45 @@
+python custom_create_model.py
+2024-11-17 08:17:35.085886: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2024-11-17 08:17:36.116125: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2024-11-17 08:17:39.649136: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Model: "functional"
+┌──────────────────────────────────────┬─────────────────────────────┬─────────────────┐
+│ Layer (type)                         │ Output Shape                │         Param # │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ input_layer (InputLayer)             │ (None, 987, 1)              │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ gru (GRU)                            │ (None, 987, 512)            │         791,040 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ flatten (Flatten)                    │ (None, 505344)              │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 3)                   │       1,516,035 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 2,307,075 (8.80 MB)
+ Trainable params: 2,307,075 (8.80 MB)
+ Non-trainable params: 0 (0.00 B)
+Epoch 1/3
+←[1m24/24←[0m ←[32m━━━━━━━━━━━━━━━━━━━━←[0m←[37m←[0m ←[1m0s←[0m 2s/step - accuracy: 0.5354 - loss: 12.7132
+Epoch 1: val_accuracy improved from -inf to 0.86687, saving model to ./custom_model_artificial.keras
+←[1m24/24←[0m ←[32m━━━━━━━━━━━━━━━━━━━━←[0m←[37m←[0m ←[1m54s←[0m 2s/step - accuracy: 0.5425 - loss: 12.4835 - val_accuracy: 0.8669 - val_loss: 2.1868 - learning_rate: 0.0010
+Epoch 2/3
+←[1m24/24←[0m ←[32m━━━━━━━━━━━━━━━━━━━━←[0m←[37m←[0m ←[1m0s←[0m 4s/step - accuracy: 0.9343 - loss: 0.5295
+Epoch 2: val_accuracy improved from 0.86687 to 0.91022, saving model to ./custom_model_artificial.keras
+←[1m24/24←[0m ←[32m━━━━━━━━━━━━━━━━━━━━←[0m←[37m←[0m ←[1m92s←[0m 4s/step - accuracy: 0.9340 - loss: 0.5314 - val_accuracy: 0.9102 - val_loss: 2.3189 - learning_rate: 9.0484e-04
+Epoch 3/3
+←[1m24/24←[0m ←[32m━━━━━━━━━━━━━━━━━━━━←[0m←[37m←[0m ←[1m0s←[0m 2s/step - accuracy: 0.9553 - loss: 0.3991
+Epoch 3: val_accuracy improved from 0.91022 to 0.92570, saving model to ./custom_model_artificial.keras
+←[1m24/24←[0m ←[32m━━━━━━━━━━━━━━━━━━━━←[0m←[37m←[0m ←[1m65s←[0m 3s/step - accuracy: 0.9554 - loss: 0.3979 - val_accuracy: 0.9257 - val_loss: 1.5311 - learning_rate: 8.1873e-04
+Test Accuracy: 92.570%
+←[1m11/11←[0m ←[32m━━━━━━━━━━━━━━━━━━━━←[0m←[37m←[0m ←[1m5s←[0m 443ms/step
+Classification Report:
+----------------------
+               precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94       118
+           1       0.89      0.97      0.93       106
+           2       0.90      0.91      0.90        99
+
+    accuracy                           0.93       323
+   macro avg       0.93      0.93      0.92       323
+weighted avg       0.93      0.93      0.93       323

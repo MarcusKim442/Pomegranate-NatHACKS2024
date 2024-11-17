@@ -102,7 +102,14 @@ def get_prediction():
     X_test = data.values 
     X_test = X_test.reshape(data.shape[0], data.shape[1], 1) 
     predictions = model.predict(X_test)
+    predictions = adjust_predictions(predictions, scale_factor=0.0000001)
+    print(predictions)
     # For softmax (multiclass classification):
     predicted_labels = predictions.argmax(axis=1)
     print("Predicted labels:", predicted_labels)
     return predicted_labels
+
+def adjust_predictions(predictions, scale_factor=0.5):
+    predictions[:, 2] *= scale_factor  # Scale down the 3rd label's probability
+    predictions /= predictions.sum(axis=1, keepdims=True)  # Re-normalize
+    return predictions
