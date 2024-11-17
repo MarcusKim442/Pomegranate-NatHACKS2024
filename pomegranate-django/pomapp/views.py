@@ -5,12 +5,19 @@ from pomapp.models import Post, PostImage
 import json
 import django.core.serializers as serializers
 from django.http import JsonResponse
-import os
+import os, subprocess
 import pandas as pd
 def home(request):
     return render(request, 'home.html')
 
 def view_post(request, id):
+    eeg_path = os.path.join("..", "pomegranate-brainflow", "read_eeg.py")
+    eeg_directory = os.path.dirname(eeg_path)
+    try:
+        subprocess.run(["python", eeg_path], cwd=eeg_directory, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"An error occurred while running script_a.py: {e}")
+
     post = Post.objects.get(id=id)
 
     next_id = post.id + 1
