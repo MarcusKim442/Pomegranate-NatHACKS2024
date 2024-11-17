@@ -84,16 +84,11 @@ def poll_updates(request):
     
 def send_eeg_collection_trigger(request):
     print('see post!')
-    time.sleep(2)
-    
-    # response = collect_data()
-
-    # gen_training_matrix(eeg_raw_path, eeg_transformed_path, cols_to_ignore=-1)
-    # predicted_labels = get_prediction()
-    # unique_values, counts = np.unique(predicted_labels, return_counts=True)
-    # most_common = int(unique_values[np.argmax(counts)])
-
-    most_common = 0
+    collect_data(eeg_raw_path)
+    gen_training_matrix(eeg_raw_path, eeg_transformed_path, cols_to_ignore=-1)
+    predicted_labels = get_prediction()
+    unique_values, counts = np.unique(predicted_labels, return_counts=True)
+    most_common = int(unique_values[np.argmax(counts)])
     print("label: ", end='')
     print(most_common)
     return JsonResponse({'data': most_common})

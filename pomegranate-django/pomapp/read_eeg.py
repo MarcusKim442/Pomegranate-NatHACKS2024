@@ -5,16 +5,12 @@ import pandas as pd
 from brainflow.board_shim import BoardShim, BrainFlowInputParams, LogLevels, BoardIds
 from brainflow.data_filter import DataFilter
 
-def collect_data():
-    main()
-    return "worked"
-
-def main():
+def collect_data(output_data_path):
     BoardShim.enable_dev_board_logger()
 
     # Initialize parameters for Ganglion board
     params = BrainFlowInputParams()
-    params.serial_port = "COM3"  # Update with your actual COM port
+    params.serial_port = "COM8"  # Update with your actual COM port
     board = BoardShim(BoardIds.GANGLION_BOARD.value, params)
     board.prepare_session()
     board.start_stream()
@@ -49,11 +45,7 @@ def main():
     df = df.loc[:, (df != 0).any(axis=0)]
 
     # Save processed data to CSV in the same directory as the script
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    output_file = os.path.join(script_dir, 'processed_data.csv')
-    df.to_csv(output_file, index=False)
-    print(f"Processed data saved to {output_file}")
-
-
-if __name__ == "__main__":
-    main()
+    # script_dir = os.path.dirname(os.path.abspath(__file__))
+    # output_file = os.path.join(script_dir, 'processed_data.csv')
+    df.to_csv(output_data_path, index=False)
+    print(f"Processed data saved to {output_data_path}")
