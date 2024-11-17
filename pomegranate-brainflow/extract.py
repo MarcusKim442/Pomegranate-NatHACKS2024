@@ -49,8 +49,8 @@ def gen_training_matrix(file_path, output_file, cols_to_ignore):
 
 if __name__ == '__main__':
     # Define the input and output file paths
-    file_path = os.path.abspath("processed_data.csv")  # Adjust path if needed
-    output_file = "output_with_full_features.csv"
+    file_path = os.path.abspath("neutral.csv")  # Adjust path if needed
+    output_file = "neutral_fullfeatures.csv"
 
     # Generate the training matrix
     gen_training_matrix(file_path, output_file, cols_to_ignore=-1)
