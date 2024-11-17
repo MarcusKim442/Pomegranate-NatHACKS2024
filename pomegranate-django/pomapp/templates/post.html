@@ -6,6 +6,7 @@
 
 {% block content %}
 {% load static %}
+    <script src="{% static 'pomapp/post.js' %}"></script>
     <link rel="stylesheet" href="{% static 'pomapp/post.css' %}">
 
     <div class="post-header">
@@ -45,5 +46,12 @@
             </a>
         {% endif %}
     </div>
+
+    <div class="icon-container">
+        <!-- Icon will be dynamically inserted here -->
+    </div>
+    
+    <button onclick="showReaction(true)">Test Happy</button>
+    <button onclick="showReaction(false)">Test Sad</button>
 
 {% endblock %}
