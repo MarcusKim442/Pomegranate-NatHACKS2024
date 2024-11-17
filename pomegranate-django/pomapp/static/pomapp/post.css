@@ -204,5 +204,7 @@ Button:disabled {
     display: flex;
     align-items: center;
     justify-content: center;
+    transform: none; /* Reset any transformations */
+    font-style: normal; /* Ensures text is not italicized */
 }
 

@@ -2,9 +2,9 @@ function showReaction(isPositive) {
     const container = document.querySelector('.icon-container');
     container.innerHTML = ''; // Clear the previous icon
 
-    const icon = document.createElement('i');
+    const icon = document.createElement('div');
     icon.classList.add('icon-animation');
-    icon.style.fontSize = '500px'; // Set the size of the emoji or icon
+    icon.style.fontSize = '200px'; // Set the size of the emoji or icon
     if (isPositive) {
         icon.innerText = '❤️';
     } else {
